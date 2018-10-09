@@ -159,3 +159,11 @@ BOOST_AUTO_TEST_CASE(moveRightTestNoMoveRightTests) {
     BOOST_CHECK_THROW(s3.moveRight(), StateCantMoveException);
     BOOST_CHECK_NO_THROW(sGoodForMove.moveRight());
 }
+
+BOOST_AUTO_TEST_CASE(toStringTest) {
+    std::vector<uint8_t> map{1,2,5,3,4,6,0,7,8};
+    State s(map);
+    std::string stringToCompare = "125\n346\n078";
+
+    BOOST_CHECK(s.toString() == stringToCompare);
+}

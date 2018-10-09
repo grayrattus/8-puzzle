@@ -49,6 +49,16 @@ State State::moveRight() const {
         throw StateCantMoveException();
     }
 };
+std::string State::toString() const {
+    std::string toReturn = "";
+    for (int index = 0; index < map.size(); index++) {
+        if (index % MAX_COLUMNS_INDEX == 0 && index > 0) {
+            toReturn.append("\n");
+        } 
+        toReturn.append(std::to_string(map.at(index)));
+    }
+    return toReturn;
+};
 
 std::vector<uint8_t> State::getMap() const {
     return map;
