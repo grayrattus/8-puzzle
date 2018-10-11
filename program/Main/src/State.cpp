@@ -15,36 +15,28 @@ State::~State() {
 }
 State State::moveUp() const{
     if (currentMoveElementIndex + 1 - MAX_COLUMNS_INDEX > 0) {
-        std::vector<uint8_t> newMap = map;
-        std::swap(newMap[currentMoveElementIndex - 3], newMap[currentMoveElementIndex]);
-        return State(newMap);
+        return swapPositions(currentMoveElementIndex - 3, currentMoveElementIndex);
     } else {
         throw StateCantMoveException();
     }
 }
 State State::moveDown() const{
     if (currentMoveElementIndex + 1 + MAX_COLUMNS_INDEX <= MAX_PUZZLE_INDEX + 1) {
-        std::vector<uint8_t> newMap = map;
-        std::swap(newMap[currentMoveElementIndex + 3], newMap[currentMoveElementIndex]);
-        return State(newMap);
+        return swapPositions(currentMoveElementIndex + 3, currentMoveElementIndex);
     } else {
         throw StateCantMoveException();
     }
 }
 State State::moveLeft() const {
     if ((currentMoveElementIndex - 1 + 1) % 3 != 0) {
-        std::vector<uint8_t> newMap = map;
-        std::swap(newMap[currentMoveElementIndex - 1], newMap[currentMoveElementIndex]);
-        return State(newMap);
+        return swapPositions(currentMoveElementIndex - 1, currentMoveElementIndex);
     } else {
         throw StateCantMoveException();
     }
 };
 State State::moveRight() const {
     if ((currentMoveElementIndex + 1) % 3 != 0) {
-        std::vector<uint8_t> newMap = map;
-        std::swap(newMap[currentMoveElementIndex + 1], newMap[currentMoveElementIndex]);
-        return State(newMap);
+        return swapPositions(currentMoveElementIndex + 1, currentMoveElementIndex);
     } else {
         throw StateCantMoveException();
     }
@@ -59,6 +51,12 @@ std::string State::toString() const {
     }
     return toReturn;
 };
+
+State State::swapPositions(const uint8_t fromIndex, const uint8_t toIndex) const {
+        std::vector<uint8_t> newMap = map;
+        std::swap(newMap[fromIndex], newMap[toIndex]);
+        return State(newMap);
+}
 
 std::vector<uint8_t> State::getMap() const {
     return map;

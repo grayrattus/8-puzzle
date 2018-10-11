@@ -14,6 +14,7 @@ private:
     static const uint8_t MAX_COLUMNS_INDEX;
     static const uint8_t MAX_PUZZLE_INDEX;
     uint8_t currentMoveElementIndex;
+    State swapPositions(const uint8_t fromIndex, const uint8_t toIndex) const;
 public:
     State(const std::vector<uint8_t> map);
     State(const State& orig);
