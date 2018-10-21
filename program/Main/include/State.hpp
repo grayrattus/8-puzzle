@@ -23,6 +23,7 @@ public:
     State moveDown() const;
     State moveLeft() const;
     State moveRight() const;
+    std::vector<State> getNeighbours() const;
     std::string toString() const;
     std::vector<uint8_t> getMap() const;
     uint8_t getCurrentMoveElementIndex() const;

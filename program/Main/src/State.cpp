@@ -10,6 +10,9 @@ State::State(const std::vector<uint8_t> map) : map{map}
 {
     this->currentMoveElementIndex = std::find(map.begin(), map.end(), ELEMENT_TO_SEARCH) - map.begin();
 }
+State::State(const State& orig) {
+
+};
 State::~State() {
 
 }
@@ -63,6 +66,27 @@ std::vector<uint8_t> State::getMap() const {
 };
 uint8_t State::getCurrentMoveElementIndex() const {
     return currentMoveElementIndex;
+};
+
+std::vector<State> State::getNeighbours() const {
+    std::vector<State> neighbours;
+    try {
+        neighbours.push_back(this->moveDown());
+    } catch (StateCantMoveException e) {
+    }
+    try {
+        neighbours.push_back(this->moveUp());
+    } catch (StateCantMoveException e) {
+    }
+    try {
+        neighbours.push_back(this->moveLeft());
+    } catch (StateCantMoveException e) {
+    }
+    try {
+        neighbours.push_back(this->moveRight());
+    } catch (StateCantMoveException e) {
+    }
+    return neighbours;
 };
 
 bool operator== (const State &s1, const State &s2) {
