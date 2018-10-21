@@ -1,10 +1,11 @@
 #include "BfsSearch.hpp"
 #include "StateCantMoveException.hpp"
 #include <algorithm>
+#include <iostream>
 
-BfsSearch::BfsSearch(const State& initialState, const State& goal): goalTest{goal} {
+BfsSearch::BfsSearch(State initialState, State goal): goalTest{goal} {
+    this->frontier;
     this->frontier.push_back(initialState);
-
 }
 BfsSearch::~BfsSearch() {
 
@@ -20,12 +21,9 @@ State BfsSearch::performSearch() {
             return state;
         }
 
-        for (auto neighbour : state.getNeighbours()) {
-            if (std::any_of(frontier.begin(), frontier.end(), [=](State searchState) {
-                return searchState == state;
-            }) && std::any_of(explored.begin(), explored.end(), [=](State searchState) {
-                return searchState == state;
-            })) {
+        auto neighbours = state.getNeighbours();
+        for (auto neighbour : neighbours) {
+            if (std::find(frontier.begin(), frontier.end(), state) == frontier.end() && std::find(explored.begin(), explored.end(), state) == explored.end()) {
                 frontier.push_front(neighbour);
             }
         }

@@ -13,7 +13,7 @@ private:
     std::vector<State> explored;
     State goalTest;
 public:
-    BfsSearch(const State& initialState, const State& goal);
+    BfsSearch(State initialState, State goal);
     State performSearch();
     virtual ~BfsSearch();
 };

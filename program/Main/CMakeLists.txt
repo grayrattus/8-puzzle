@@ -15,9 +15,9 @@ find_package (Boost 1.58.0 COMPONENTS "unit_test_framework" REQUIRED)
 set(SOURCE_TESTER_FILES 
         ../test/master.cpp 
         ../test/StateTest.cpp
-        ../test/BfsSearchTest.cpp
         ../test/Basic.cpp
         )
+set(BFS_TESTER_FILES ../test/master.cpp ../test/BfsSearchTest.cpp)
 
 include_directories(Main/include ${Boost_INCLUDE_DIRS})
 
@@ -27,7 +27,7 @@ include_directories(Main/include ${Boost_INCLUDE_DIRS})
 add_executable("StateTest" ${SOURCE_TESTER_FILES})
 target_link_libraries("StateTest" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 
-add_executable("BfsSearch" ${SOURCE_TESTER_FILES})
+add_executable("BfsSearch" ${BFS_TESTER_FILES})
 target_link_libraries("BfsSearch" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 
 add_custom_target(check ${CMAKE_COMMAND} -E env CTEST_OUTPUT_ON_FAILURE=1 BOOST_TEST_LOG_LEVEL=all
