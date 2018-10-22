@@ -10,9 +10,6 @@ State::State(const std::vector<uint8_t> map) : map{map}
 {
     this->currentMoveElementIndex = std::find(map.begin(), map.end(), ELEMENT_TO_SEARCH) - map.begin();
 }
-State::State(const State& orig): map{orig.map} {
-
-};
 State::~State() {
 
 }

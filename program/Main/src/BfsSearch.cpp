@@ -4,7 +4,6 @@
 #include <iostream>
 
 BfsSearch::BfsSearch(State initialState, State goal): goalTest{goal} {
-    this->frontier;
     this->frontier.push_back(initialState);
 }
 BfsSearch::~BfsSearch() {
@@ -21,9 +20,8 @@ State BfsSearch::performSearch() {
             return state;
         }
 
-        auto neighbours = state.getNeighbours();
-        for (auto neighbour : neighbours) {
-            if (std::find(frontier.begin(), frontier.end(), state) == frontier.end() && std::find(explored.begin(), explored.end(), state) == explored.end()) {
+        for (auto neighbour : state.getNeighbours()) {
+            if (std::find(frontier.begin(), frontier.end(), neighbour) == frontier.end() && std::find(explored.begin(), explored.end(), neighbour) == explored.end()) {
                 frontier.push_front(neighbour);
             }
         }

@@ -17,7 +17,6 @@ private:
     State swapPositions(const uint8_t fromIndex, const uint8_t toIndex) const;
 public:
     State(const std::vector<uint8_t> map);
-    State(const State& orig);
     virtual ~State();
     State moveUp() const;
     State moveDown() const;
