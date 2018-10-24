@@ -14,7 +14,7 @@ State BfsSearch::performSearch() {
     while(!frontier.empty()) {
         State state = frontier.front();
         frontier.pop_front();
-        explored.push_back(state);
+        explored.insert(state);
 
         if (state == goalTest) {
             return state;
@@ -22,7 +22,7 @@ State BfsSearch::performSearch() {
 
         for (auto neighbour : state.getNeighbours()) {
             if (std::find(frontier.begin(), frontier.end(), neighbour) == frontier.end() && std::find(explored.begin(), explored.end(), neighbour) == explored.end()) {
-                frontier.push_front(neighbour);
+                frontier.push_back(neighbour);
             }
         }
     }

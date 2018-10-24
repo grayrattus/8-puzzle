@@ -92,3 +92,6 @@ bool operator== (const State &s1, const State &s2) {
 bool operator== (const State &s1, const std::vector<uint8_t> &map) {
     return s1.getMap() == map;
 }
+bool State::operator<(const State &s1) const {
+    return std::lexicographical_compare(this->map.begin(), this->map.end(), s1.map.begin(), s1.map.end());
+};

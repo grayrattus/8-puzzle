@@ -10,7 +10,7 @@
 class BfsSearch {
 private:
     std::list<State> frontier;
-    std::vector<State> explored;
+    std::set<State> explored;
     State goalTest;
 public:
     BfsSearch(State initialState, State goal);
