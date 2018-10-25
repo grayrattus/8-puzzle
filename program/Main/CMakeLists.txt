@@ -5,6 +5,8 @@ set(SOURCE_FILES
         "src/Basic.cpp" 
         "src/State.cpp" 
         "src/BfsSearch.cpp" 
+        "src/Arguments.cpp" 
+        "src/AbstractAlgorithm.cpp" 
         "main.cpp")
 
 add_library(Main ${SOURCE_FILES})

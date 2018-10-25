@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <iostream>
 
-BfsSearch::BfsSearch(State initialState, State goal): goalTest{goal} {
+BfsSearch::BfsSearch(State initialState, State goal): AbstractAlgorithm{initialState, goal} {
     this->frontier.push_back(initialState);
 }
 BfsSearch::~BfsSearch() {
@@ -16,7 +16,7 @@ State BfsSearch::performSearch() {
         frontier.pop_front();
         explored.insert(state);
 
-        if (state == goalTest) {
+        if (state == goal) {
             return state;
         }
 
