@@ -6,6 +6,7 @@
 #include <State.hpp>
 #include <AbstractAlgorithm.hpp>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -20,13 +21,14 @@ private:
     std::string aditionalInformationsFileName;
 
     enum argumentIndex {
-        ALGORITHM, FIRST_MOVES, INPUT_FILE_NAME, SOLUTION_FILE_NAME, ADITIONAL_INFORMATIONS_FILE_NAME
+        PROGRAM_NAME, ALGORITHM, FIRST_MOVES, INPUT_FILE_NAME, SOLUTION_FILE_NAME, ADITIONAL_INFORMATIONS_FILE_NAME
     };
 
     State parseStringToState(std::stringstream puzzle);
-    std::stringstream getFileContents(std::string fileName);
+    std::stringstream getFileContents(char* fileName);
 public:
     Arguments(int args, char* argv[]);
+    AbstractAlgorithmPointer getAlgorithm();
     virtual ~Arguments();
 
 };

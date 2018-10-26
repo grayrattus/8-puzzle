@@ -2,3 +2,7 @@
 
 AbstractAlgorithm::AbstractAlgorithm(State initialState, State goal) : initialState{initialState}, goal{goal} {
 };
+
+AbstractAlgorithm::~AbstractAlgorithm() {
+
+}

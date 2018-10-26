@@ -3,33 +3,35 @@
 
 #include <BfsSearch.hpp>
 #include <ostream>
-#include <stringstream>
 
-Arguments::Arguments(int args, char* argv[]) {
+Arguments::Arguments(int args, char* argv[]): firstStateFromFile{parseStringToState(getFileContents(argv[argumentIndex::INPUT_FILE_NAME]))}{
     std::string paramAlgorithmName{argv[argumentIndex::ALGORITHM]};
     inputFileName = argv[argumentIndex::INPUT_FILE_NAME];
     solutionFileName = argv[argumentIndex::SOLUTION_FILE_NAME];
     aditionalInformationsFileName = argv[argumentIndex::ADITIONAL_INFORMATIONS_FILE_NAME];
-
-    firstStateFromFile = parseStringToState(getFileContents(inputFileName));
 
     // Add save solution to file - this should be from State.toString()
     // Add save solution to aditionalInformations to file
     // Add moves 
 
     if (paramAlgorithmName == "bfs") {
-        algorithm = AbstractAlgorithmPointer{new BfsSearch{}}
+        algorithm = AbstractAlgorithmPointer{new BfsSearch{firstStateFromFile, State{std::vector<uint8_t>{1, 2, 3, 4, 5, 6, 7, 8, 0}}}};
     }
 
 
 }
+Arguments::~Arguments() {
 
-std::stringstream Arguments::getFileContents(std::string fileName) {
+}
+
+std::stringstream Arguments::getFileContents(char* fileName) {
+    std::string name(fileName);
     ifstream inputFile;
-    inputFile.open(inputFileName);
+    inputFile.open(name);
 
     std::stringstream inputFileStream;
     inputFileStream << inputFile.rdbuf();
+    std::string test = inputFileStream.str();
     return inputFileStream;
 }
 
@@ -39,10 +41,14 @@ State Arguments::parseStringToState(std::stringstream puzzle) {
     puzzle >> puzzleSizeTmp;
     puzzleSize = std::stoi(puzzleSizeTmp);
 
-    std::vector<uint_8> stateMap;
+    std::vector<uint8_t> stateMap;
     std::string puzzleNumber;
     while (puzzle >> puzzleNumber) {
         stateMap.push_back((unsigned)std::stoi(puzzleNumber));
     }
     return State{stateMap};
 }
+
+AbstractAlgorithmPointer Arguments::getAlgorithm() {
+    return std::move(algorithm);
+};

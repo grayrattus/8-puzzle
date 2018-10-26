@@ -20,6 +20,7 @@ set(SOURCE_TESTER_FILES
         ../test/Basic.cpp
         )
 set(BFS_TESTER_FILES ../test/master.cpp ../test/BfsSearchTest.cpp)
+set(ARGUMENTS_TESTER_FILES ../test/master.cpp ../test/ArgumentsTest.cpp)
 
 include_directories(Main/include ${Boost_INCLUDE_DIRS})
 
@@ -32,8 +33,11 @@ target_link_libraries("StateTest" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 add_executable("BfsSearch" ${BFS_TESTER_FILES})
 target_link_libraries("BfsSearch" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 
+add_executable("Arguments" ${ARGUMENTS_TESTER_FILES})
+target_link_libraries("Arguments" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1")
+
 add_custom_target(check ${CMAKE_COMMAND} -E env CTEST_OUTPUT_ON_FAILURE=1 BOOST_TEST_LOG_LEVEL=all
-        ${CMAKE_CTEST_COMMAND} -C $<CONFIG> --verbose
+        ${CMAKE_CTEST_COMMAND} -C $<CONFIG> --verbose -D GLIBGLIBCXX_DEBUG
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
 enable_testing()

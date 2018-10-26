@@ -7,7 +7,6 @@
 using namespace std;
 
 
-typedef std::unique_ptr<AbstractAlgorithm> AbstractAlgorithmPointer;
 
 class AbstractAlgorithm {
 public:
@@ -19,5 +18,7 @@ public:
     virtual ~AbstractAlgorithm();
 
 };
+
+typedef std::unique_ptr<AbstractAlgorithm> AbstractAlgorithmPointer;
 
 #endif
