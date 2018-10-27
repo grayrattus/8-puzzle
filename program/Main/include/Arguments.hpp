@@ -12,7 +12,7 @@ using namespace std;
 
 class Arguments {
 private: 
-    int puzzleSize;
+    uint8_t puzzleSize;
     std::vector<char> firstMoves;
     State firstStateFromFile;
     AbstractAlgorithmPointer algorithm;

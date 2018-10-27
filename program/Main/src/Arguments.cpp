@@ -5,7 +5,7 @@
 #include <ostream>
 
 Arguments::Arguments(int args, char* argv[]): firstStateFromFile{parseStringToState(getFileContents(argv[argumentIndex::INPUT_FILE_NAME]))}{
-    std::string paramAlgorithmName{argv[argumentIndex::ALGORITHM]};
+    std::string paramAlgorithmName = argv[argumentIndex::ALGORITHM];
     inputFileName = argv[argumentIndex::INPUT_FILE_NAME];
     solutionFileName = argv[argumentIndex::SOLUTION_FILE_NAME];
     aditionalInformationsFileName = argv[argumentIndex::ADITIONAL_INFORMATIONS_FILE_NAME];
@@ -15,7 +15,7 @@ Arguments::Arguments(int args, char* argv[]): firstStateFromFile{parseStringToSt
     // Add moves 
 
     if (paramAlgorithmName == "bfs") {
-        algorithm = AbstractAlgorithmPointer{new BfsSearch{firstStateFromFile, State{std::vector<uint8_t>{1, 2, 3, 4, 5, 6, 7, 8, 0}}}};
+        algorithm = AbstractAlgorithmPointer{new BfsSearch{firstStateFromFile, State{std::vector<uint8_t>{1, 2, 3, 4, 5, 6, 7, 8, 0}, puzzleSize}}};
     }
 
 
@@ -39,14 +39,14 @@ State Arguments::parseStringToState(std::stringstream puzzle) {
     std::string puzzleSizeTmp;
     puzzle >> puzzleSizeTmp;
     puzzle >> puzzleSizeTmp;
-    puzzleSize = std::stoi(puzzleSizeTmp);
+    puzzleSize = (unsigned)std::stoi(puzzleSizeTmp);
 
     std::vector<uint8_t> stateMap;
     std::string puzzleNumber;
     while (puzzle >> puzzleNumber) {
         stateMap.push_back((unsigned)std::stoi(puzzleNumber));
     }
-    return State{stateMap};
+    return State{stateMap, puzzleSize};
 }
 
 AbstractAlgorithmPointer Arguments::getAlgorithm() {
