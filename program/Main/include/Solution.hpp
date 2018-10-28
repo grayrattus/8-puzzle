@@ -17,7 +17,9 @@ public:
     Solution();
     virtual ~Solution();
     std::string getExecutionTime(); 
-
+    void incrementVisited();
+    void incrementProcessed();
+    std::string toString();
 };
 
 #endif
