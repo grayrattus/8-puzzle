@@ -9,12 +9,12 @@ set(SOURCE_FILES
         "src/BfsSearch.cpp" 
         "src/Arguments.cpp" 
         "src/AbstractAlgorithm.cpp" 
-        "src/AbstractMove.cpp" 
         "src/MoveUp.cpp" 
         "src/MoveDown.cpp" 
         "src/MoveLeft.cpp" 
         "src/MoveRight.cpp" 
         "src/Solution.cpp" 
+        "src/AbstractMove.cpp" 
         "main.cpp")
 
 add_library(Main ${SOURCE_FILES})
