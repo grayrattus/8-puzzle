@@ -3,7 +3,7 @@
 
 #include <string>
 #include <memory>
-#include "State.hpp"
+class State;
 
 using namespace std;
 
