@@ -26,6 +26,7 @@ public:
     std::string toString() const;
     std::vector<uint8_t> getMap() const;
     uint8_t getCurrentMoveElementIndex() const;
+    uint8_t getMaxColumnsIndex() const;
     friend bool operator== (const State &s1, const State &s2);
     friend bool operator== (const State &s1, const std::vector<uint8_t> &map);
     bool operator< (const State &s1) const;

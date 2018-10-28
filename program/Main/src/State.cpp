@@ -85,6 +85,10 @@ std::vector<State> State::getNeighbours() const {
     return neighbours;
 };
 
+uint8_t State::getMaxColumnsIndex() const { 
+    return maxColumnsIndex;
+};
+
 bool operator== (const State &s1, const State &s2) {
     return s1.getMap() == s2.getMap();
 }
@@ -94,3 +98,4 @@ bool operator== (const State &s1, const std::vector<uint8_t> &map) {
 bool State::operator<(const State &s1) const {
     return std::lexicographical_compare(this->map.begin(), this->map.end(), s1.map.begin(), s1.map.end());
 };
+
