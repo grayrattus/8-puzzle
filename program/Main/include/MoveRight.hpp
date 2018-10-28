@@ -3,6 +3,7 @@
 
 #include <string>
 #include "AbstractMove.hpp"
+#include "State.hpp"
 
 using namespace std;
 

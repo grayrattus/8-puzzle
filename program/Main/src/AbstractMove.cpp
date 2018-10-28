@@ -1,5 +1,7 @@
 #include "AbstractMove.hpp"
 
+#include "State.hpp"
+
 AbstractMove::AbstractMove(const State* state): state{state} {
 }
 AbstractMove::~AbstractMove() {

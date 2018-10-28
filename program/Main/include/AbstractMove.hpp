@@ -5,6 +5,7 @@
 #include <memory>
 class State;
 
+
 using namespace std;
 
 class AbstractMove {
@@ -16,6 +17,6 @@ public:
     State swapPositions(const uint8_t fromIndex, const uint8_t toIndex) const;
     virtual State move() = 0;
 };
-typedef std::unique_ptr<AbstractMove> AbstractMovePointer;
+typedef std::shared_ptr<AbstractMove> AbstractMovePointer;
 
 #endif
