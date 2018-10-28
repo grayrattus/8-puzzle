@@ -63,6 +63,9 @@ std::vector<uint8_t> State::getMap() const {
 uint8_t State::getCurrentMoveElementIndex() const {
     return currentMoveElementIndex;
 };
+uint8_t State::getMaxPuzzleIndex() const {
+    return maxPuzzleIndex;
+};
 
 std::vector<State> State::getNeighbours() const {
     std::vector<State> neighbours;

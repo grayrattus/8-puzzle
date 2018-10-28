@@ -9,6 +9,11 @@ set(SOURCE_FILES
         "src/BfsSearch.cpp" 
         "src/Arguments.cpp" 
         "src/AbstractAlgorithm.cpp" 
+        "src/AbstractMove.cpp" 
+        "src/MoveUp.cpp" 
+        "src/MoveDown.cpp" 
+        "src/MoveLeft.cpp" 
+        "src/MoveRight.cpp" 
         "src/Solution.cpp" 
         "main.cpp")
 
@@ -25,6 +30,10 @@ set(SOURCE_TESTER_FILES
 set(BFS_TESTER_FILES ../test/master.cpp ../test/BfsSearchTest.cpp)
 set(ARGUMENTS_TESTER_FILES ../test/master.cpp ../test/ArgumentsTest.cpp)
 set(SOLUTION_TESTER_FILES ../test/master.cpp ../test/SolutionTest.cpp)
+set(MOVE_UP_TESTER_FILES ../test/master.cpp ../test/MoveUpTest.cpp)
+set(MOVE_DOWN_TESTER_FILES ../test/master.cpp ../test/MoveDownTest.cpp)
+set(MOVE_LEFT_TESTER_FILES ../test/master.cpp ../test/MoveLeftTest.cpp)
+set(MOVE_RIGHT_TESTER_FILES ../test/master.cpp ../test/MoveRightTest.cpp)
 
 include_directories(Main/include ${Boost_INCLUDE_DIRS})
 
@@ -42,6 +51,18 @@ target_link_libraries("Arguments" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-
 
 add_executable("Solution" ${SOLUTION_TESTER_FILES})
 target_link_libraries("Solution" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1" ${Boost_LIBRARIES})
+
+add_executable("MoveUp" ${MOVE_UP_TESTER_FILES})
+target_link_libraries("MoveUp" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1" ${Boost_LIBRARIES})
+
+add_executable("MoveDown" ${MOVE_DOWN_TESTER_FILES})
+target_link_libraries("MoveDown" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1" ${Boost_LIBRARIES})
+
+add_executable("MoveLeft" ${MOVE_LEFT_TESTER_FILES})
+target_link_libraries("MoveLeft" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1" ${Boost_LIBRARIES})
+
+add_executable("MoveRight" ${MOVE_RIGHT_TESTER_FILES})
+target_link_libraries("MoveRight" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1" ${Boost_LIBRARIES})
 
 add_custom_target(check ${CMAKE_COMMAND} -E env CTEST_OUTPUT_ON_FAILURE=1 BOOST_TEST_LOG_LEVEL=all
         ${CMAKE_CTEST_COMMAND} -C $<CONFIG> --verbose -D GLIBGLIBCXX_DEBUG

@@ -7,10 +7,10 @@
 using namespace std;
 
 class AbstractMove {
-private:
-    State state;
+protected:
+    const State* state;
 public:
-    AbstractMove(const State& state);
+    AbstractMove(const State* state);
     virtual State move() = 0;
     virtual ~AbstractMove();
     State swapPositions(const uint8_t fromIndex, const uint8_t toIndex) const;
