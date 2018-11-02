@@ -1,7 +1,7 @@
 #include "MoveUp.hpp"
 #include "StateCantMoveException.hpp"
 
-MoveUp::MoveUp(const State* state): AbstractMove{state} {
+MoveUp::MoveUp(const State* state): AbstractMove{state, "U"} {
 
 }
 MoveUp::~MoveUp() {

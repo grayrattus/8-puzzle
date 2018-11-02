@@ -17,10 +17,13 @@ private:
     uint8_t currentMoveElementIndex;
     State swapPositions(const uint8_t fromIndex, const uint8_t toIndex) const;
 public:
+    std::vector<AbstractMovePointer> getMovesArguments(std::string moveArguments);
     State(const std::vector<uint8_t> map, const uint8_t puzzleSize);
+    State(const std::vector<uint8_t> map, const uint8_t puzzleSize, std::string firstMoves);
     virtual ~State();
     std::vector<State> getNeighbours() const;
     std::string toString() const;
+    std::string getMoves() const;
     std::vector<uint8_t> getMap() const;
     uint8_t getCurrentMoveElementIndex() const;
     uint8_t getMaxColumnsIndex() const;

@@ -5,6 +5,7 @@
 #include <vector>
 #include <State.hpp>
 #include <AbstractAlgorithm.hpp>
+#include <AbstractMove.hpp>
 #include <fstream>
 #include <sstream>
 
@@ -13,7 +14,7 @@ using namespace std;
 class Arguments {
 private: 
     uint8_t puzzleSize;
-    std::vector<char> firstMoves;
+    std::string firstMoves;
     State firstStateFromFile;
     AbstractAlgorithmPointer algorithm;
     std::string inputFileName;

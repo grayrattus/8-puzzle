@@ -1,7 +1,7 @@
 #include "MoveDown.hpp"
 #include "StateCantMoveException.hpp"
 
-MoveDown::MoveDown(const State* state): AbstractMove{state} {
+MoveDown::MoveDown(const State* state): AbstractMove{state, "D"} {
 
 }
 MoveDown::~MoveDown() {

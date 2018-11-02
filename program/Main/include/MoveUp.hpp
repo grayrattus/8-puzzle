@@ -8,6 +8,7 @@
 using namespace std;
 
 class MoveUp : public AbstractMove {
+private:
 public:
     State move();
     MoveUp(const State* state) ;

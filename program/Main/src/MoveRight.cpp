@@ -1,7 +1,7 @@
 #include "MoveRight.hpp"
 #include "StateCantMoveException.hpp"
 
-MoveRight::MoveRight(const State* state): AbstractMove{state} {
+MoveRight::MoveRight(const State* state): AbstractMove{state, "R"} {
 
 }
 MoveRight::~MoveRight() {

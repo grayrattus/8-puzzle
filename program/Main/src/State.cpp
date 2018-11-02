@@ -22,9 +22,44 @@ State::State(const std::vector<uint8_t> map, const uint8_t puzzleSize) :
 {
     this->currentMoveElementIndex = std::find(map.begin(), map.end(), ELEMENT_TO_SEARCH) - map.begin();
 }
+
+State::State(const std::vector<uint8_t> map, const uint8_t puzzleSize, std::string firstMoves) : 
+    map{map}, 
+    maxColumnsIndex{puzzleSize},
+    maxPuzzleIndex(maxColumnsIndex*maxColumnsIndex - 1),
+    moves{getMovesArguments(firstMoves)}
+{
+    this->currentMoveElementIndex = std::find(map.begin(), map.end(), ELEMENT_TO_SEARCH) - map.begin();
+}
 State::~State() {
 
 }
+
+std::string State::getMoves() const {
+    std::string arangedMoves;
+    for (auto move : moves) {
+        arangedMoves += move->toString();
+    }
+    return arangedMoves;
+}
+
+std::vector<AbstractMovePointer> State::getMovesArguments(std::string moveArguments) {
+    std::vector<AbstractMovePointer> moves;
+    for (char& c : moveArguments) {
+        switch(c) {
+            case('U'):
+                moves.push_back(AbstractMovePointer{new MoveUp(this)});
+            case('D'):
+                moves.push_back(AbstractMovePointer{new MoveDown(this)});
+            case('L'):
+                moves.push_back(AbstractMovePointer{new MoveLeft(this)});
+            case('R'):
+                moves.push_back(AbstractMovePointer{new MoveRight(this)});
+        }
+    }
+    return moves;
+}
+
 std::string State::toString() const {
     std::string toReturn = "";
     for (int index = 0; index < map.size(); index++) {
@@ -64,6 +99,7 @@ std::vector<State> State::getNeighbours() const {
     }
     return neighbours;
 };
+
 
 uint8_t State::getMaxColumnsIndex() const { 
     return maxColumnsIndex;
