@@ -54,11 +54,13 @@ uint8_t State::getMaxPuzzleIndex() const {
 
 std::vector<State> State::getNeighbours() const {
     std::vector<State> neighbours;
-    for (auto const& singleMove : moves) {
+    for (auto singleMove : moves) {
         try {
             neighbours.push_back(singleMove->move());
         } catch (StateCantMoveException e) {
+        } catch (const std::bad_alloc& e) {
         }
+
     }
     return neighbours;
 };

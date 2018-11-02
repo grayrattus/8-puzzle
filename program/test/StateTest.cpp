@@ -6,7 +6,7 @@
 #include <utility>
 #include <iostream>
 
-const uint8_t PUZZLE_SIZE = 4;
+const uint8_t PUZZLE_SIZE = 3;
 
 BOOST_AUTO_TEST_CASE(StateConstructorTest) {
     std::vector<uint8_t> map{1,2,5,3,4,0,6,7,8};
