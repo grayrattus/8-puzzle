@@ -47,7 +47,7 @@ add_executable("BfsSearch" ${BFS_TESTER_FILES})
 target_link_libraries("BfsSearch" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 
 add_executable("Arguments" ${ARGUMENTS_TESTER_FILES})
-target_link_libraries("Arguments" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1")
+target_link_libraries("Arguments" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1" ${Boost_LIBRARIES})
 
 add_executable("Solution" ${SOLUTION_TESTER_FILES})
 target_link_libraries("Solution" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1" ${Boost_LIBRARIES})

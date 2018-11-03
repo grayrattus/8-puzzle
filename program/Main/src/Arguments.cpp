@@ -27,6 +27,7 @@ Arguments::~Arguments() {
 
 }
 
+
 std::stringstream Arguments::getFileContents(char* fileName) {
     std::string name(fileName);
     ifstream inputFile;
@@ -54,4 +55,14 @@ State Arguments::parseStringToState(std::stringstream puzzle) {
 
 AbstractAlgorithmPointer Arguments::getAlgorithm() {
     return std::move(algorithm);
+};
+
+void Arguments::writeSolutionToFiles(Solution& solution) {
+    ofstream solutionFile(solutionFileName);
+    ofstream aditionalInformationFile(aditionalInformationsFileName);
+
+    solutionFile << solution.getMoves();
+    aditionalInformationFile << solution.toString();
+    solutionFile.close();
+    aditionalInformationFile.close();
 };

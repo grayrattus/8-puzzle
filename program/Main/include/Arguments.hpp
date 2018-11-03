@@ -8,6 +8,7 @@
 #include <AbstractMove.hpp>
 #include <fstream>
 #include <sstream>
+#include "Solution.hpp"
 
 using namespace std;
 
@@ -29,6 +30,7 @@ private:
     std::stringstream getFileContents(char* fileName);
 public:
     Arguments(int args, char* argv[]);
+    void writeSolutionToFiles(Solution& solution);
     AbstractAlgorithmPointer getAlgorithm();
     virtual ~Arguments();
 
