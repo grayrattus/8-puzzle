@@ -1,6 +1,8 @@
 #include "Solution.hpp"
+#include <ostream>
 
 Solution::Solution(): beginTime{thread_clock::now()},
+    recurstionIndex{0}, 
     numberOfProcessedStates{0}, 
     numberOfVisitedStates{0} {
 
@@ -15,10 +17,20 @@ std::string Solution::getExecutionTime() {
 void Solution::incrementVisited() {
     numberOfVisitedStates++;
 };
+void Solution::incrementRecurstionIndex() {
+    recurstionIndex++;
+};
 void Solution::incrementProcessed() {
     numberOfProcessedStates++;
 };
+
+void Solution::addMove(std::string move) {
+    performedMoves.push_back(move);
+};
 std::string Solution::toString() {
-    std::string solution;
-    return solution;
+    std::ostringstream solution;
+    solution << performedMoves.size() << "\n" << numberOfVisitedStates << "\n" 
+    << numberOfProcessedStates << "\n" << recurstionIndex << "\n" <<
+    getExecutionTime() << "\n";
+    return solution.str();
 };

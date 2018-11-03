@@ -12,6 +12,8 @@ class Solution {
 private:
     int numberOfVisitedStates;
     int numberOfProcessedStates;
+    int recurstionIndex;
+    std::vector<std::string> performedMoves;
     thread_clock::time_point beginTime;
 public:
     Solution();
@@ -19,6 +21,8 @@ public:
     std::string getExecutionTime(); 
     void incrementVisited();
     void incrementProcessed();
+    void incrementRecurstionIndex();
+    void addMove(std::string move);
     std::string toString();
 };
 
