@@ -8,7 +8,7 @@
 #include <iostream>
 
 
-const uint8_t PUZZLE_SIZE = 4;
+const uint8_t PUZZLE_SIZE = 3;
 
 BOOST_AUTO_TEST_CASE(BfsSearchTest) {
     std::vector<uint8_t> result{1,2,3,4,5,6,7,8,0};

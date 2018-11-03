@@ -41,10 +41,10 @@ include_directories(Main/include ${Boost_INCLUDE_DIRS})
 #target_link_libraries("Basic" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 
 add_executable("StateTest" ${SOURCE_TESTER_FILES})
-target_link_libraries("StateTest" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+target_link_libraries("StateTest" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Boost_LIBRARIES})
 
 add_executable("BfsSearch" ${BFS_TESTER_FILES})
-target_link_libraries("BfsSearch" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+target_link_libraries("BfsSearch" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Boost_LIBRARIES})
 
 add_executable("Arguments" ${ARGUMENTS_TESTER_FILES})
 target_link_libraries("Arguments" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1" ${Boost_LIBRARIES})
