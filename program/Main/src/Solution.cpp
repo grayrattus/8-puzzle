@@ -1,5 +1,6 @@
 #include "Solution.hpp"
 #include <ostream>
+#include <numeric>
 
 Solution::Solution(): beginTime{thread_clock::now()},
     recurstionIndex{0}, 
@@ -33,4 +34,8 @@ std::string Solution::toString() {
     << numberOfProcessedStates << "\n" << recurstionIndex << "\n" <<
     getExecutionTime() << "\n";
     return solution.str();
+};
+
+std::string Solution::getMoves() {
+    return std::accumulate(performedMoves.begin(), performedMoves.end(), std::string(""));
 };

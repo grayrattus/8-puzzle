@@ -24,6 +24,7 @@ public:
     void incrementRecurstionIndex();
     void addMove(std::string move);
     std::string toString();
+    std::string getMoves();
 };
 
 #endif
