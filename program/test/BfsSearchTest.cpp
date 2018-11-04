@@ -12,7 +12,7 @@ const uint8_t PUZZLE_SIZE = 3;
 
 BOOST_AUTO_TEST_CASE(BfsSearchTest) {
     std::vector<uint8_t> result{1,2,3,4,5,6,7,8,0};
-    std::vector<uint8_t> map{1,2,3,4,5,0,7,8,6};
+    std::vector<uint8_t> map{ 4,1,5,0,3,2,7,8,6 };
     State stateLookedFor(result, PUZZLE_SIZE);
     State initialState(map, PUZZLE_SIZE);
 
