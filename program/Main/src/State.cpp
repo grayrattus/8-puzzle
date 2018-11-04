@@ -45,21 +45,25 @@ uint8_t State::getMaxPuzzleIndex() const {
 
 std::vector<State> State::getNeighbours() const {
     std::vector<State> neighbours;
-    try {
-        neighbours.push_back(this->moveDown());
-    } catch (StateCantMoveException e) {
-    }
-    try {
-        neighbours.push_back(this->moveUp());
-    } catch (StateCantMoveException e) {
-    }
-    try {
-        neighbours.push_back(this->moveLeft());
-    } catch (StateCantMoveException e) {
-    }
-    try {
-        neighbours.push_back(this->moveRight());
-    } catch (StateCantMoveException e) {
+    for (auto moveLeter : firstMoves) {
+        try {
+            switch (moveLeter) {
+            case ('U'):
+                neighbours.push_back(this->moveUp());
+                break;
+            case ('D'):
+                neighbours.push_back(this->moveDown());
+                break;
+            case ('L'):
+                neighbours.push_back(this->moveLeft());
+                break;
+            case ('R'):
+                neighbours.push_back(this->moveRight());
+                break;
+            }
+        }
+        catch (StateCantMoveException e) {
+        }
     }
     return neighbours;
 };
