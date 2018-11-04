@@ -4,18 +4,11 @@
 
 const uint8_t State::ELEMENT_TO_SEARCH = 0;
 
-State::State(const std::vector<uint8_t> map, const uint8_t puzzleSize) : 
-    map{map}, 
-    maxColumnsIndex{puzzleSize},
-    maxPuzzleIndex(maxColumnsIndex*maxColumnsIndex - 1)
-{
-    this->currentMoveElementIndex = std::find(map.begin(), map.end(), ELEMENT_TO_SEARCH) - map.begin();
-}
-
 State::State(const std::vector<uint8_t> map, const uint8_t puzzleSize, std::string firstMoves) : 
     map{map}, 
     maxColumnsIndex{puzzleSize},
-    maxPuzzleIndex(maxColumnsIndex*maxColumnsIndex - 1)
+    maxPuzzleIndex(maxColumnsIndex*maxColumnsIndex - 1),
+    firstMoves{firstMoves}
 {
     this->currentMoveElementIndex = std::find(map.begin(), map.end(), ELEMENT_TO_SEARCH) - map.begin();
 }
@@ -37,7 +30,7 @@ std::string State::toString() const {
 State State::swapPositions(const uint8_t fromIndex, const uint8_t toIndex) const {
         std::vector<uint8_t> newMap = map;
         std::swap(newMap[fromIndex], newMap[toIndex]);
-        return State(newMap, maxColumnsIndex);
+        return State(newMap, maxColumnsIndex, firstMoves);
 }
 
 std::vector<uint8_t> State::getMap() const {

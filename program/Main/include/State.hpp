@@ -13,9 +13,9 @@ private:
     uint8_t maxColumnsIndex;
     uint8_t maxPuzzleIndex;
     uint8_t currentMoveElementIndex;
+    std::string firstMoves;
     State swapPositions(const uint8_t fromIndex, const uint8_t toIndex) const;
 public:
-    State(const std::vector<uint8_t> map, const uint8_t puzzleSize);
     State(const std::vector<uint8_t> map, const uint8_t puzzleSize, std::string firstMoves);
     virtual ~State();
     std::string toString() const;
