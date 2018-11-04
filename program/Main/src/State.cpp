@@ -1,24 +1,13 @@
 #include "State.hpp"
 #include "StateCantMoveException.hpp"
 #include <algorithm>
-#include "MoveRight.hpp"
-#include "MoveLeft.hpp"
-#include "MoveUp.hpp"
-#include "MoveDown.hpp"
-#include "AbstractMove.hpp"
 
 const uint8_t State::ELEMENT_TO_SEARCH = 0;
 
 State::State(const std::vector<uint8_t> map, const uint8_t puzzleSize) : 
     map{map}, 
     maxColumnsIndex{puzzleSize},
-    maxPuzzleIndex(maxColumnsIndex*maxColumnsIndex - 1),
-    moves{
-        AbstractMovePointer{new MoveUp(this)},
-        AbstractMovePointer{new MoveDown(this)},
-        AbstractMovePointer{new MoveLeft(this)},
-        AbstractMovePointer{new MoveRight(this)}
-        }
+    maxPuzzleIndex(maxColumnsIndex*maxColumnsIndex - 1)
 {
     this->currentMoveElementIndex = std::find(map.begin(), map.end(), ELEMENT_TO_SEARCH) - map.begin();
 }
@@ -26,38 +15,12 @@ State::State(const std::vector<uint8_t> map, const uint8_t puzzleSize) :
 State::State(const std::vector<uint8_t> map, const uint8_t puzzleSize, std::string firstMoves) : 
     map{map}, 
     maxColumnsIndex{puzzleSize},
-    maxPuzzleIndex(maxColumnsIndex*maxColumnsIndex - 1),
-    moves{getMovesArguments(firstMoves)}
+    maxPuzzleIndex(maxColumnsIndex*maxColumnsIndex - 1)
 {
     this->currentMoveElementIndex = std::find(map.begin(), map.end(), ELEMENT_TO_SEARCH) - map.begin();
 }
 State::~State() {
 
-}
-
-std::string State::getMoves() const {
-    std::string arangedMoves;
-    for (auto move : moves) {
-        arangedMoves += move->toString();
-    }
-    return arangedMoves;
-}
-
-std::vector<AbstractMovePointer> State::getMovesArguments(std::string moveArguments) {
-    std::vector<AbstractMovePointer> moves;
-    for (char& c : moveArguments) {
-        switch(c) {
-            case('U'):
-                moves.push_back(AbstractMovePointer{new MoveUp(this)});
-            case('D'):
-                moves.push_back(AbstractMovePointer{new MoveDown(this)});
-            case('L'):
-                moves.push_back(AbstractMovePointer{new MoveLeft(this)});
-            case('R'):
-                moves.push_back(AbstractMovePointer{new MoveRight(this)});
-        }
-    }
-    return moves;
 }
 
 std::string State::toString() const {
@@ -89,17 +52,53 @@ uint8_t State::getMaxPuzzleIndex() const {
 
 std::vector<State> State::getNeighbours() const {
     std::vector<State> neighbours;
-    for (auto singleMove : moves) {
-        try {
-            neighbours.push_back(singleMove->move());
-        } catch (StateCantMoveException e) {
-        } catch (const std::bad_alloc& e) {
-        }
-
+    try {
+        neighbours.push_back(this->moveDown());
+    } catch (StateCantMoveException e) {
+    }
+    try {
+        neighbours.push_back(this->moveUp());
+    } catch (StateCantMoveException e) {
+    }
+    try {
+        neighbours.push_back(this->moveLeft());
+    } catch (StateCantMoveException e) {
+    }
+    try {
+        neighbours.push_back(this->moveRight());
+    } catch (StateCantMoveException e) {
     }
     return neighbours;
 };
 
+State State::moveUp() const{
+    if (currentMoveElementIndex + 1 - maxColumnsIndex > 0) {
+        return swapPositions(currentMoveElementIndex - 3, currentMoveElementIndex);
+    } else {
+        throw StateCantMoveException();
+    }
+}
+State State::moveDown() const{
+    if (currentMoveElementIndex + 1 + maxColumnsIndex <= maxPuzzleIndex + 1) {
+        return swapPositions(currentMoveElementIndex + 3, currentMoveElementIndex);
+    } else {
+        throw StateCantMoveException();
+    }
+}
+State State::moveLeft() const {
+    if ((currentMoveElementIndex - 1 + 1) % 3 != 0) {
+        return swapPositions(currentMoveElementIndex - 1, currentMoveElementIndex);
+    } else {
+        throw StateCantMoveException();
+    }
+};
+State State::moveRight() const {
+    if ((currentMoveElementIndex + 1) % 3 != 0) {
+        return swapPositions(currentMoveElementIndex + 1, currentMoveElementIndex);
+    } else {
+        throw StateCantMoveException();
+    }
+};
 
 uint8_t State::getMaxColumnsIndex() const { 
     return maxColumnsIndex;

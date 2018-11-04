@@ -5,7 +5,6 @@
 #include <vector>
 #include <State.hpp>
 #include <AbstractAlgorithm.hpp>
-#include <AbstractMove.hpp>
 #include <fstream>
 #include <sstream>
 #include "Solution.hpp"

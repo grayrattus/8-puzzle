@@ -3,28 +3,29 @@
 
 #include <string>
 #include <vector>
-#include "AbstractMove.hpp"
 
 using namespace std;
 
 class State {
 private:
     std::vector<uint8_t> map;
-    std::vector<AbstractMovePointer> moves;
     static const uint8_t ELEMENT_TO_SEARCH;
     uint8_t maxColumnsIndex;
     uint8_t maxPuzzleIndex;
     uint8_t currentMoveElementIndex;
     State swapPositions(const uint8_t fromIndex, const uint8_t toIndex) const;
 public:
-    std::vector<AbstractMovePointer> getMovesArguments(std::string moveArguments);
     State(const std::vector<uint8_t> map, const uint8_t puzzleSize);
     State(const std::vector<uint8_t> map, const uint8_t puzzleSize, std::string firstMoves);
     virtual ~State();
-    std::vector<State> getNeighbours() const;
     std::string toString() const;
     std::string getMoves() const;
     std::vector<uint8_t> getMap() const;
+    State moveUp() const;
+    State moveDown() const;
+    State moveLeft() const;
+    State moveRight() const;
+    std::vector<State> getNeighbours() const;
     uint8_t getCurrentMoveElementIndex() const;
     uint8_t getMaxColumnsIndex() const;
     uint8_t getMaxPuzzleIndex() const;
