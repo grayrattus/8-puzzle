@@ -24,7 +24,7 @@ Arguments::Arguments(int args, char* argv[]):
                 State{
                     std::vector<uint8_t>{1, 2, 3, 4, 5, 6, 7, 8, 0}, 
                     puzzleSize,
-                    firstMoves }
+                    firstMoves}
                 }
         };
     }

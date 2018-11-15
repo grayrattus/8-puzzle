@@ -12,9 +12,10 @@ class BfsSearch : public AbstractAlgorithm{
 private:
     std::list<State> frontier;
     std::set<State> explored;
+    std::vector<State> visited;
 public:
     BfsSearch(State initialState, State goal);
-    State performSearch();
+    Solution performSearch();
     virtual ~BfsSearch();
 };
 

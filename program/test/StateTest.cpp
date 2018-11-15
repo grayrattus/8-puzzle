@@ -26,20 +26,20 @@ BOOST_AUTO_TEST_CASE(getCurrentMoveElementIndexTest) {
     BOOST_CHECK(s.getCurrentMoveElementIndex() == zeroElementIndex);
 }
 
-BOOST_AUTO_TEST_CASE(getNeighboursTest) {
-    std::vector<uint8_t> mapGoodForMoveUp{1,2,5,3,4,6,0,7,8};
-    std::vector<uint8_t> afterUp{1,2,5,0,4,6,3,7,8};
-    std::vector<uint8_t> afterRight{1,2,5,3,4,6,7,0,8};
-    std::vector<std::vector<uint8_t>> possibleMoves{afterUp, afterRight};
-
-    State s1(mapGoodForMoveUp, PUZZLE_SIZE, FIRST_MOVES);
-
-    auto neighbours = s1.getNeighbours();
-    for (auto neighbour : neighbours) {
-        BOOST_CHECK(std::find(possibleMoves.begin(), possibleMoves.end(), neighbour.getMap()) != possibleMoves.end());
-    }
-}
-
+//BOOST_AUTO_TEST_CASE(getNeighboursTest) {
+//    std::vector<uint8_t> mapGoodForMoveUp{1,2,5,3,4,6,0,7,8};
+//    std::vector<uint8_t> afterUp{1,2,5,0,4,6,3,7,8};
+//    std::vector<uint8_t> afterRight{1,2,5,3,4,6,7,0,8};
+//    std::vector<std::vector<uint8_t>> possibleMoves{afterUp, afterRight};
+//
+//    State s1(mapGoodForMoveUp, PUZZLE_SIZE, FIRST_MOVES);
+//
+//    auto neighbours = s1.getNeighbours();
+//    for (auto neighbour : neighbours) {
+//        BOOST_CHECK(std::find(possibleMoves.begin(), possibleMoves.end(), neighbour.getMap()) != possibleMoves.end());
+//    }
+//}
+//
 BOOST_AUTO_TEST_CASE(toStringTest) {
     std::vector<uint8_t> map{1,2,5,3,4,6,0,7,8};
     State s(map, PUZZLE_SIZE, FIRST_MOVES);

@@ -4,8 +4,10 @@
 #include <boost/chrono/thread_clock.hpp>
 #include <boost/chrono.hpp>
 #include <string>
+#include "Info.hpp"
+#include "State.hpp"
+#include <map>
 
-using namespace std;
 using namespace boost::chrono;
 
 class Solution {
@@ -15,6 +17,7 @@ private:
     int recurstionIndex;
     std::vector<std::string> performedMoves;
     thread_clock::time_point beginTime;
+    std::map<State, Info> infos;
 public:
     Solution();
     virtual ~Solution();

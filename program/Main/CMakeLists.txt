@@ -9,6 +9,7 @@ set(SOURCE_FILES
         "src/BfsSearch.cpp" 
         "src/Arguments.cpp" 
         "src/AbstractAlgorithm.cpp" 
+        "src/Info.cpp" 
         "src/Solution.cpp" 
         "main.cpp")
 

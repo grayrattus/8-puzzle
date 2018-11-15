@@ -26,7 +26,8 @@ void Solution::incrementProcessed() {
 };
 
 void Solution::addMove(std::string move) {
-    performedMoves.push_back(move);
+    if (move != "F")
+        performedMoves.push_back(move);
 };
 std::string Solution::toString() {
     std::ostringstream solution;
@@ -37,5 +38,8 @@ std::string Solution::toString() {
 };
 
 std::string Solution::getMoves() {
-    return std::accumulate(performedMoves.begin(), performedMoves.end(), std::string(""));
+    std::string moves;
+    moves += std::to_string(performedMoves.size()) + "\n";
+    moves += std::accumulate(performedMoves.begin(), performedMoves.end(), std::string("")) + "\n";
+    return moves;
 };
