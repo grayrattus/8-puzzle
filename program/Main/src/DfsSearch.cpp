@@ -31,10 +31,11 @@ Solution DfsSearch::performSearch() {
              }
          }
 
-         if (recursionLevel > 18) {
+         if (recursionLevel > 20) {
              state = frontier.front();
              frontier.pop_front();
-             recursionLevel = 0;
+             recursionLevel=0;
+             explored.clear();
          }
 
         if (state == goal) {
@@ -57,7 +58,7 @@ Solution DfsSearch::performSearch() {
 
 
         for (auto neighbour : state.getNeighbours(solution)) {
-            if (std::find(frontier.begin(), frontier.end(), neighbour) == frontier.end() && std::find(explored.begin(), explored.end(), neighbour) == explored.end()) {
+            if (std::find(explored.begin(), explored.end(), neighbour) == explored.end()) {
                 frontier.push_back(neighbour);
             }
         }

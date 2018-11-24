@@ -13,10 +13,11 @@ const std::string FIRST_MOVES = "UDLR";
 
 
 BOOST_AUTO_TEST_CASE(BfsSearchTest) {
-    std::vector<uint8_t> map{1,2,3,4,
-                             5,6,7,8,
-                             9,0,11,12,
-                             13,10,14,15};
+    std::vector<uint8_t> map {1,2,3,4,
+5,7,10,8,
+9,0,6,12,
+13,14,11,15};
+
     std::vector<uint8_t> result{1,2,3,4,
                                 5,6,7,8,
                                 9,10,11,12,
