@@ -2,6 +2,7 @@
 #include <boost/program_options.hpp>
 
 #include <BfsSearch.hpp>
+#include <DfsSearch.hpp>
 #include <ostream>
 
 Arguments::Arguments(int args, char* argv[]): 
@@ -22,7 +23,23 @@ Arguments::Arguments(int args, char* argv[]):
             new BfsSearch{
                 firstStateFromFile, 
                 State{
-                    std::vector<uint8_t>{1, 2, 3, 4, 5, 6, 7, 8, 0}, 
+                    std::vector<uint8_t>{1, 2, 3, 4,
+                                         5, 6, 7, 8, 
+                                         9, 10, 11, 12,
+                                         13, 14, 15, 0}, 
+                    puzzleSize,
+                    firstMoves}
+                }
+        };
+    } else if (paramAlgorithmName == "dfs") {
+        algorithm = AbstractAlgorithmPointer{
+            new DfsSearch{
+                firstStateFromFile, 
+                State{
+                    std::vector<uint8_t>{1, 2, 3, 4,
+                                         5, 6, 7, 8, 
+                                         9, 10, 11, 12,
+                                         13, 14, 15, 0}, 
                     puzzleSize,
                     firstMoves}
                 }

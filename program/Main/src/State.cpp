@@ -78,27 +78,27 @@ std::vector<State> State::getNeighbours(Solution& solution) const {
 
 State State::moveUp() const{
     if (currentMoveElementIndex + 1 - maxColumnsIndex > 0) {
-        return swapPositions(currentMoveElementIndex - 3, currentMoveElementIndex, "U");
+        return swapPositions(currentMoveElementIndex - maxColumnsIndex, currentMoveElementIndex, "U");
     } else {
         throw StateCantMoveException();
     }
 }
 State State::moveDown() const{
     if (currentMoveElementIndex + 1 + maxColumnsIndex <= maxPuzzleIndex + 1) {
-        return swapPositions(currentMoveElementIndex + 3, currentMoveElementIndex, "D");
+        return swapPositions(currentMoveElementIndex + maxColumnsIndex, currentMoveElementIndex, "D");
     } else {
         throw StateCantMoveException();
     }
 }
 State State::moveLeft() const {
-    if ((currentMoveElementIndex - 1 + 1) % 3 != 0) {
+    if ((currentMoveElementIndex - 1 + 1) % maxColumnsIndex != 0) {
         return swapPositions(currentMoveElementIndex - 1, currentMoveElementIndex, "L");
     } else {
         throw StateCantMoveException();
     }
 };
 State State::moveRight() const {
-    if ((currentMoveElementIndex + 1) % 3 != 0) {
+    if ((currentMoveElementIndex + 1) % maxColumnsIndex != 0) {
         return swapPositions(currentMoveElementIndex + 1, currentMoveElementIndex, "R");
     } else {
         throw StateCantMoveException();

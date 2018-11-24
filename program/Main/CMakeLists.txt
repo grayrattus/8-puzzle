@@ -7,6 +7,7 @@ set(SOURCE_FILES
         "src/Basic.cpp" 
         "src/State.cpp" 
         "src/BfsSearch.cpp" 
+        "src/DfsSearch.cpp" 
         "src/Arguments.cpp" 
         "src/AbstractAlgorithm.cpp" 
         "src/Info.cpp" 
@@ -24,6 +25,7 @@ set(SOURCE_TESTER_FILES
         ../test/Basic.cpp
         )
 set(BFS_TESTER_FILES ../test/master.cpp ../test/BfsSearchTest.cpp)
+set(DFS_TESTER_FILES ../test/master.cpp ../test/DfsSearchTest.cpp)
 set(ARGUMENTS_TESTER_FILES ../test/master.cpp ../test/ArgumentsTest.cpp)
 set(SOLUTION_TESTER_FILES ../test/master.cpp ../test/SolutionTest.cpp)
 
@@ -32,11 +34,17 @@ include_directories(Main/include ${Boost_INCLUDE_DIRS})
 #add_executable("Basic" ${SOURCE_TESTER_FILES})
 #target_link_libraries("Basic" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 
+add_executable("MainProgram" ${SOURCE_FILES})
+target_link_libraries("MainProgram" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Boost_LIBRARIES})
+
 add_executable("StateTest" ${SOURCE_TESTER_FILES})
 target_link_libraries("StateTest" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Boost_LIBRARIES})
 
 add_executable("BfsSearch" ${BFS_TESTER_FILES})
 target_link_libraries("BfsSearch" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Boost_LIBRARIES})
+
+add_executable("DfsSearch" ${DFS_TESTER_FILES})
+target_link_libraries("DfsSearch" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${Boost_LIBRARIES})
 
 add_executable("Arguments" ${ARGUMENTS_TESTER_FILES})
 target_link_libraries("Arguments" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1" ${Boost_LIBRARIES})
