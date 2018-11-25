@@ -8,19 +8,26 @@
 #include <iostream>
 
 
-const uint8_t PUZZLE_SIZE = 3;
-const std::string FIRST_MOVES = "UDLR";
+const uint8_t PUZZLE_SIZE = 4;
+const std::string FIRST_MOVES = "RDUL";
 
 
 BOOST_AUTO_TEST_CASE(AStarHammingTest) {
-    std::vector<uint8_t> result{1,2,3,4,5,6,7,8,0};
-    std::vector<uint8_t> map{1,0,2,4,5,3,7,8,6};
+    std::vector<uint8_t> map{1, 2, 3, 4,
+                             5, 6, 11, 7,
+                             9, 10, 15, 8,
+                             13, 14, 0, 12};
+
+    std::vector<uint8_t> result{1, 2, 3, 4,
+               5, 6, 7, 8,
+               9, 10, 11, 12,
+               13, 14, 15, 0};
 
     State stateLookedFor(result, PUZZLE_SIZE, FIRST_MOVES);
     State initialState(map, PUZZLE_SIZE, FIRST_MOVES);
 
-    AStarHamming bfs(initialState, stateLookedFor);
-    Solution st = bfs.performSearch();
+    AStarHamming a(initialState, stateLookedFor);
+    Solution st = a.performSearch();
     std::cout << st.toString();
     std::cout << st.getMoves();
 }
