@@ -14,10 +14,6 @@ Arguments::Arguments(int args, char* argv[]):
     solutionFileName = argv[argumentIndex::SOLUTION_FILE_NAME];
     aditionalInformationsFileName = argv[argumentIndex::ADITIONAL_INFORMATIONS_FILE_NAME];
 
-    // Add save solution to file - this should be from State.toString()
-    // Add save solution to aditionalInformations to file
-    // Add moves 
-
     if (paramAlgorithmName == "bfs") {
         algorithm = AbstractAlgorithmPointer{
             new BfsSearch{

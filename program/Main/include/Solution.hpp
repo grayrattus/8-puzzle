@@ -7,6 +7,7 @@
 #include "Info.hpp"
 #include "State.hpp"
 #include <map>
+#include <time.h>
 
 using namespace boost::chrono;
 
@@ -16,7 +17,7 @@ private:
     int numberOfProcessedStates;
     int recurstionIndex;
     std::vector<std::string> performedMoves;
-    thread_clock::time_point beginTime;
+    clock_t beginTime;
     std::map<State, Info> infos;
 public:
     Solution();

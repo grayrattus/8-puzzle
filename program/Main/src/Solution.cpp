@@ -2,7 +2,7 @@
 #include <ostream>
 #include <numeric>
 
-Solution::Solution(): beginTime{thread_clock::now()},
+Solution::Solution(): beginTime{clock()},
     recurstionIndex{0}, 
     numberOfProcessedStates{0}, 
     numberOfVisitedStates{0} {
@@ -13,7 +13,7 @@ Solution::~Solution() {
 };
 
 std::string Solution::getExecutionTime() {
-    return std::to_string(duration_cast<milliseconds>(thread_clock::now()-beginTime).count());
+    return std::to_string(((double)clock() - beginTime)/CLOCKS_PER_SEC);
 }
 void Solution::incrementVisited() {
     numberOfVisitedStates++;
