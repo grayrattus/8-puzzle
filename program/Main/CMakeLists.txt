@@ -9,6 +9,7 @@ set(SOURCE_FILES
         "src/BfsSearch.cpp" 
         "src/DfsSearch.cpp" 
         "src/Arguments.cpp" 
+        "src/AStarHamming.cpp" 
         "src/AbstractAlgorithm.cpp" 
         "src/Info.cpp" 
         "src/Solution.cpp" 
@@ -28,6 +29,7 @@ set(BFS_TESTER_FILES ../test/master.cpp ../test/BfsSearchTest.cpp)
 set(DFS_TESTER_FILES ../test/master.cpp ../test/DfsSearchTest.cpp)
 set(ARGUMENTS_TESTER_FILES ../test/master.cpp ../test/ArgumentsTest.cpp)
 set(SOLUTION_TESTER_FILES ../test/master.cpp ../test/SolutionTest.cpp)
+set(A_STAR_HAMMING_TESTER_FILES ../test/master.cpp ../test/AStarHammingTest.cpp)
 
 include_directories(Main/include ${Boost_INCLUDE_DIRS})
 
@@ -51,6 +53,9 @@ target_link_libraries("Arguments" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-
 
 add_executable("Solution" ${SOLUTION_TESTER_FILES})
 target_link_libraries("Solution" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1" ${Boost_LIBRARIES})
+
+add_executable("AStarHamming" ${A_STAR_HAMMING_TESTER_FILES})
+target_link_libraries("AStarHamming" "Main" ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} "-D_GLIBCXX_DEBUG=1" ${Boost_LIBRARIES})
 
 add_custom_target(check ${CMAKE_COMMAND} -E env CTEST_OUTPUT_ON_FAILURE=1 BOOST_TEST_LOG_LEVEL=all
         ${CMAKE_CTEST_COMMAND} -C $<CONFIG> --verbose -D GLIBGLIBCXX_DEBUG
