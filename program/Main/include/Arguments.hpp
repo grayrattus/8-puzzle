@@ -27,6 +27,7 @@ private:
 
     State parseStringToState(std::stringstream puzzle);
     std::stringstream getFileContents(char* fileName);
+    std::string checkFirstMoves(char* firstMoves); 
 public:
     Arguments(int args, char* argv[]);
     void writeSolutionToFiles(Solution& solution);

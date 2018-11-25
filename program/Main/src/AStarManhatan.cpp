@@ -1,17 +1,17 @@
-#include "AStarHamming.hpp"
+#include "AStarManhatan.hpp"
 #include "StateCantMoveException.hpp"
 #include <algorithm>
 #include <iostream>
 
 
-AStarHamming::AStarHamming(State initialState, State goal): AbstractAlgorithm{initialState, goal} {
+AStarManhatan::AStarManhatan(State initialState, State goal): AbstractAlgorithm{initialState, goal} {
     this->frontier.push(initialState);
 }
-AStarHamming::~AStarHamming() {
+AStarManhatan::~AStarManhatan() {
 
 }
 
-Solution AStarHamming::performSearch() {
+Solution AStarManhatan::performSearch() {
     while(!frontier.empty()) {
         solution.incrementVisited();
         auto state = frontier.top();

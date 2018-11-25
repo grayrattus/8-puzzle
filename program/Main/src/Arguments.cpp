@@ -3,10 +3,12 @@
 
 #include <BfsSearch.hpp>
 #include <DfsSearch.hpp>
+#include <AStarHamming.hpp>
 #include <ostream>
+#include <iostream>
 
 Arguments::Arguments(int args, char* argv[]): 
-    firstMoves{argv[argumentIndex::FIRST_MOVES]},
+    firstMoves{checkFirstMoves(argv[argumentIndex::FIRST_MOVES])},
     firstStateFromFile{parseStringToState(getFileContents(argv[argumentIndex::INPUT_FILE_NAME]))}{
 
     std::string paramAlgorithmName = argv[argumentIndex::ALGORITHM];
@@ -40,12 +42,33 @@ Arguments::Arguments(int args, char* argv[]):
                     firstMoves}
                 }
         };
+    } else if (paramAlgorithmName == "astr") {
+         firstMoves = "RDUL";
+         algorithm = AbstractAlgorithmPointer{
+             new AStarHamming{
+                 firstStateFromFile, 
+                 State{
+                     std::vector<uint8_t>{1, 2, 3, 4,
+                                          5, 6, 7, 8, 
+                                          9, 10, 11, 12,
+                                          13, 14, 15, 0}, 
+                     puzzleSize,
+                     firstMoves}
+                 }
+         };
     }
 
 
 }
 Arguments::~Arguments() {
 
+}
+
+std::string Arguments::checkFirstMoves(char* firstMoves) {
+    if (firstMoves == "hamm") {
+        return "RDUL";
+    }
+    return firstMoves;
 }
 
 
@@ -70,6 +93,9 @@ State Arguments::parseStringToState(std::stringstream puzzle) {
     std::string puzzleNumber;
     while (puzzle >> puzzleNumber) {
         stateMap.push_back((unsigned)std::stoi(puzzleNumber));
+    }
+    if (firstMoves == "hamm") {
+        firstMoves = "RDUL";
     }
     return State{stateMap, puzzleSize, firstMoves};
 }

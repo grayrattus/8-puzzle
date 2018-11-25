@@ -16,7 +16,6 @@ public:
     Solution solution;
     AbstractAlgorithm(State initialState, State goal);
     virtual Solution performSearch() = 0;
-
     virtual ~AbstractAlgorithm();
 
 };

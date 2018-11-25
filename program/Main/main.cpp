@@ -2,7 +2,13 @@
 #include <iostream>
 
 int main(int argc, char *argv[]) {
-	Arguments a(argc, argv);
+	// std::cout << argv[0] << '\n';
+	// std::cout << argv[1] << '\n';
+	// std::cout << argv[2] << '\n';
+	// std::cout << argv[3] << '\n';
+	// std::cout << argv[4] << '\n';
+	// std::cout << argv[5] << '\n';
+	Arguments a{argc, argv};
 	auto algorightm = a.getAlgorithm();
 	auto sol = algorightm->performSearch();
 	a.writeSolutionToFiles(sol);
