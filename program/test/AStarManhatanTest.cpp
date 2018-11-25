@@ -15,8 +15,8 @@ const std::string FIRST_MOVES = "RDUL";
 BOOST_AUTO_TEST_CASE(AStarManhatanTest) {
     std::vector<uint8_t> map{1, 2, 3, 4,
                              5, 6, 11, 7,
-                             9, 10, 15, 8,
-                             13, 14, 0, 12};
+                             9, 10, 15, 0,
+                             13, 14, 12, 8};
 
     std::vector<uint8_t> result{1, 2, 3, 4,
                5, 6, 7, 8,

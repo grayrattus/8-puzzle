@@ -155,3 +155,29 @@ BOOST_AUTO_TEST_CASE(ArgumentsTest) {
      //std:string stats = "4\n1\n1\n1\n1\n";
      //BOOST_CHECK_EQUAL(stats,  statsBuffer.str());
  }
+
+ BOOST_AUTO_TEST_CASE(AStarParserManhatan) {
+     char *argv[] = {"main", "astr", "manh", 
+        "/home/grayrattus/Workspace/Uczelnia/SztucznaInteligencja/4x4_07_00044.txt",
+        "/home/grayrattus/Workspace/Uczelnia/SztucznaInteligencja/program/test/solutions/4x4_07_00044_astr_manh_sol.txt",
+        "/home/grayrattus/Workspace/Uczelnia/SztucznaInteligencja/program/test/solutions/4x4_07_00044_astr_manh_stats.txt",
+     };
+ 
+     Arguments arguments{6, argv};
+     AbstractAlgorithmPointer algorithm = arguments.getAlgorithm();
+     Solution sol = algorithm->performSearch();
+     arguments.writeSolutionToFiles(sol);
+ 
+     std::ifstream solutionFile("/home/grayrattus/Workspace/Uczelnia/SztucznaInteligencja/program/test/solutions/4x4_07_00044_astr_manh_sol.txt");
+     std::ifstream statsFile("/home/grayrattus/Workspace/Uczelnia/SztucznaInteligencja/program/test/solutions/4x4_07_00044_astr_manh_stats.txt");
+ 
+     std::stringstream solutionBuffer;
+     solutionBuffer << solutionFile.rdbuf();
+     std::string solutionMoves = "7\nLLURDDR\n";
+     BOOST_CHECK_EQUAL(solutionMoves, solutionBuffer.str());
+ 
+     std::stringstream statsBuffer;
+     statsBuffer << statsFile.rdbuf();
+     //std:string stats = "4\n1\n1\n1\n1\n";
+     //BOOST_CHECK_EQUAL(stats,  statsBuffer.str());
+ }

@@ -4,6 +4,7 @@
 #include <BfsSearch.hpp>
 #include <DfsSearch.hpp>
 #include <AStarHamming.hpp>
+#include <AStarManhatan.hpp>
 #include <ostream>
 #include <iostream>
 
@@ -15,6 +16,7 @@ Arguments::Arguments(int args, char* argv[]):
     inputFileName = argv[argumentIndex::INPUT_FILE_NAME];
     solutionFileName = argv[argumentIndex::SOLUTION_FILE_NAME];
     aditionalInformationsFileName = argv[argumentIndex::ADITIONAL_INFORMATIONS_FILE_NAME];
+
 
     if (paramAlgorithmName == "bfs") {
         algorithm = AbstractAlgorithmPointer{
@@ -42,7 +44,7 @@ Arguments::Arguments(int args, char* argv[]):
                     firstMoves}
                 }
         };
-    } else if (paramAlgorithmName == "astr") {
+    } else if (paramAlgorithmName == "astr" && std::string{argv[argumentIndex::FIRST_MOVES]} == "hamm") {
          firstMoves = "RDUL";
          algorithm = AbstractAlgorithmPointer{
              new AStarHamming{
@@ -56,16 +58,29 @@ Arguments::Arguments(int args, char* argv[]):
                      firstMoves}
                  }
          };
+    } else if (paramAlgorithmName == "astr" && std::string{argv[argumentIndex::FIRST_MOVES]} == "manh") {
+         firstMoves = "RDUL";
+         algorithm = AbstractAlgorithmPointer{
+             new AStarManhatan{
+                 firstStateFromFile, 
+                 State{
+                     std::vector<uint8_t>{1, 2, 3, 4,
+                                          5, 6, 7, 8, 
+                                          9, 10, 11, 12,
+                                          13, 14, 15, 0}, 
+                     puzzleSize,
+                     firstMoves}
+                 }
+         };
     }
-
-
 }
+
 Arguments::~Arguments() {
 
 }
 
 std::string Arguments::checkFirstMoves(char* firstMoves) {
-    if (firstMoves == "hamm") {
+    if (std::string{firstMoves} == "hamm" || std::string{firstMoves} == "manh") {
         return "RDUL";
     }
     return firstMoves;
@@ -93,9 +108,6 @@ State Arguments::parseStringToState(std::stringstream puzzle) {
     std::string puzzleNumber;
     while (puzzle >> puzzleNumber) {
         stateMap.push_back((unsigned)std::stoi(puzzleNumber));
-    }
-    if (firstMoves == "hamm") {
-        firstMoves = "RDUL";
     }
     return State{stateMap, puzzleSize, firstMoves};
 }

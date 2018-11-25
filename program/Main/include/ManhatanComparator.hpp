@@ -6,6 +6,7 @@
 #include <list>
 #include <queue>
 #include <vector>
+#include <math.h>
 #include "State.hpp"
 #include "AbstractAlgorithm.hpp"
 #include "ManhatanComparator.hpp"
@@ -32,12 +33,15 @@ class ManhatanComparator
                 break;
             }
         }
-        
-        auto foundMismatch = std::mismatch(stateMap.begin(), stateMap.end(), goalMap.begin());
 
-        while (foundMismatch.first != stateMap.end()) {
-            foundMismatch = std::mismatch(++foundMismatch.first, stateMap.end(), ++foundMismatch.second);
-            heuristicValue++;
+        const int columnSize = 4;
+
+        for (int i = 0; i < stateMap.size(); i++) {
+            if (stateMap[i] == goalMap[i]) {
+                continue;
+            } else {
+                heuristicValue += (abs(stateMap[i] / columnSize - i / columnSize) + abs(stateMap[i] % columnSize - i % columnSize));
+            }
         }
 
         return heuristicValue;
